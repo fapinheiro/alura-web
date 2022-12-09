@@ -9,7 +9,7 @@ const StyledBanner = styled.div`
 `;
 
 export default function Banner({bg}) {
-  console.log(bg)
+  // console.log(bg)
   return (
     <StyledBanner>
       <img src={bg} alt="Banner do site"/>
