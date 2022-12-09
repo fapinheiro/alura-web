@@ -18,7 +18,8 @@ para armazenamento de estado de variaveis
 - downsides: propagação das props para elementos filhos
 
 ## _app.js 
-arquivo do Next.js para definições globais
+- arquivo do Next.js para definições globais
+- onde ficam os providers
 
 ## ThemeProvider 
 para criação de temas globais.
@@ -30,7 +31,7 @@ a ideia é encapsulamento e carregamento antecipado de modo que os componentes f
 para variaveis de estado global similar ao Redux
 
 ## hooks 
-são useState personalizados
+são useState personalizados, no caso do formulario evita de ter que utilizar o useState para todos os campos. imagina um formulario com 10 campos?
 
 ## next.js 
 na parte de rotas tem toda uma estrutura baseada em conveções para o roteamento, diferentemente do react-router-dom,

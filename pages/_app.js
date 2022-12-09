@@ -2,8 +2,9 @@ import React from 'react';
 
 import { ThemeProvider } from 'styled-components';
 import { CSSReset } from '../src/components/CSSReset';
-import ColorModeProvider, { ColorModeContext } from '../src/components/Menu/components/ColorMode';
+import ColorProvider, { ColorContext } from '../src/context/ColorContext';
 import VideoProvider from '../src/context/VideoContext';
+import RegisterVideo from '../src/components/RegisterVideo';
 
 const theme = {
     light: {
@@ -24,20 +25,21 @@ const theme = {
 
 function ColorProviderWrapper(props) {
     return (
-        <ColorModeProvider initialMode="dark">
+        <ColorProvider initialMode="dark">
             {props.children}
-        </ColorModeProvider>
+        </ColorProvider>
     )
 }
 
 function MyApp({ Component, pageProps }) {
-    const colorContext = React.useContext(ColorModeContext);
+    const colorContext = React.useContext(ColorContext);
     return (
         <>
             <VideoProvider>
                 <ThemeProvider theme={theme[colorContext.mode]}>
                     <CSSReset />
                     <Component {...pageProps} />
+                    <RegisterVideo/>
                 </ThemeProvider>
             </VideoProvider>
         </>
