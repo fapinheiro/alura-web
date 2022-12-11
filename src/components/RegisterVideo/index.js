@@ -1,14 +1,14 @@
 import React from "react";
 import { StyledRegisterVideo } from "./styles";
 import useForm from "../../hooks/FormHooks";
-
+import { VideoService } from "../../service/VideoService";
 
 export default function RegisterVideo() {
     const [formVisivel, setFormVisivel] = React.useState(true);
     const formCadastro = useForm({
         initialValue: { titulo: "Titulo do video", url: "https://youtube..." }
     });
-    
+    const service = VideoService();
     /*
     ## O que precisamos para o form funcionar?
     - pegar os dados, que precisam vir do state
@@ -27,6 +27,18 @@ export default function RegisterVideo() {
                 (
                     <form onSubmit={(e) => {
                         e.preventDefault();
+                        service.createVideo({
+                            titulo: formCadastro.values.titulo,
+                            url: formCadastro.values.url,
+                            thumb: '',
+                            playlist: 'jogos'
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
                         setFormVisivel(false);
                         formCadastro.clearForm();
                     }}>

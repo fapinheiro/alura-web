@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ThemeProvider } from 'styled-components';
 import { CSSReset } from '../src/components/CSSReset';
-import ColorProvider, { ColorContext } from '../src/context/ColorContext';
-import VideoProvider from '../src/context/VideoContext';
+import ColorProvider, { ColorContext } from '../src/contexts/ColorContext';
+import VideoProvider from '../src/contexts/VideoContext';
 import RegisterVideo from '../src/components/RegisterVideo';
 
 const theme = {

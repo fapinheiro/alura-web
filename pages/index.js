@@ -5,18 +5,38 @@ import styled from 'styled-components';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
 import Banner from '../src/components/Banner';
-import { VideoContext } from '../src/context/VideoContext';
+import { VideoContext } from '../src/contexts/VideoContext';
 import Link from 'next/link';
+import { VideoService } from '../src/service/VideoService';
+
 
 function HomePage() {
 
-    const [valorDaBusca, setValorDaBusca]  = React.useState('Frost');
+    const [valorDaBusca, setValorDaBusca] = React.useState('Frost');
+    const [playlists, setPlaylists] = React.useState({})
+    const service = VideoService();
 
+    React.useEffect(
+        () => {
+            service.getAllVideos()
+            .then((dados) => {
+                const novasPlaylist = {...playlists};
+                dados.data.forEach((video) => {
+                    if (!novasPlaylist[video.playlist])
+                        novasPlaylist[video.playlist] = []
+                    novasPlaylist[video.playlist].push(video);
+                })
+                setPlaylists(novasPlaylist);
+            });
+        }, []);
+
+    console.log(playlists);
+    
     return (
         <>
             <div>
-                <Menu valorDaBusca={valorDaBusca} setValorDaBusca={setValorDaBusca}/>
-                <Banner bg={config.bg}/>
+                <Menu valorDaBusca={valorDaBusca} setValorDaBusca={setValorDaBusca} />
+                <Banner bg={config.bg} />
                 <Header />
                 <Timeline searchValue={valorDaBusca} playlists={config.playlists} />
             </div>
@@ -81,7 +101,7 @@ function Header() {
 // }
 
 
-function Timeline({searchValue, ...props}) {
+function Timeline({ searchValue, ...props }) {
     const playlistNames = Object.keys(props.playlists);
     const videoContext = React.useContext(VideoContext);
 
@@ -101,12 +121,12 @@ function Timeline({searchValue, ...props}) {
                             </h2>
                             <div>
                                 {
-                                    videos.filter( video => {
+                                    videos.filter(video => {
                                         return video.title.toLowerCase().includes(searchValue.toLowerCase())
                                     }).map((video, index) => {
-                                
+
                                         return (
-                                            <Link href='/video' key={index} onClick={ () => {setVideo(video)} }>
+                                            <Link href='/video' key={index} onClick={() => { setVideo(video) }}>
                                                 <img src={video.thumb}></img>
                                                 <span>
                                                     {video.title}

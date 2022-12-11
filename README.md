@@ -15,7 +15,10 @@ https://unsplash.com
 
 ## useState 
 para armazenamento de estado de variaveis 
-- downsides: propagação das props para elementos filhos
+
+### downsides
+- propagação das props para elementos filhos
+- chamar o setState fora de um onClick ou onChange, dentro do body do component, por exemplo, gera efeito looping infinito
 
 ## _app.js 
 - arquivo do Next.js para definições globais
@@ -37,3 +40,6 @@ são useState personalizados, no caso do formulario evita de ter que utilizar o 
 na parte de rotas tem toda uma estrutura baseada em conveções para o roteamento, diferentemente do react-router-dom,
 - https://nextjs.org/docs/api-reference/next/router
 - https://nextjs.org/docs/routing/introduction
+
+## useEffect
+para gerenciamento de 'efeitos colatereis'. Um efeito colateral é a reação a uma ação nao gerenciada. Ações gerenciadas são: onClick, onChange, etc... Ações não gerenciadas: API call

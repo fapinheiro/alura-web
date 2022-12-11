@@ -14,7 +14,7 @@ export default function useForm(props) {
             });
         },
         clearForm: () => {
-            setValues({});
+            setValues({ titulo: '', url: ''});
         }
     }
 }
