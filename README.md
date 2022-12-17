@@ -34,7 +34,11 @@ a ideia é encapsulamento e carregamento antecipado de modo que os componentes f
 para variaveis de estado global similar ao Redux
 
 ## hooks 
-são useState personalizados, no caso do formulario evita de ter que utilizar o useState para todos os campos. imagina um formulario com 10 campos?
+useState é hook para gerenciamento de estado. cuidado pois cada atualizaçao prova rendering no componente
+
+useForm exemplo de hook personalizado, no caso do formulario evita de ter que utilizar o useState para todos os campos. imagina um formulario com 10 campos? neste caso criar um hook ajuda
+
+utilizar o useRef ao inves do useState quando for formulario simples sem ações de callback assincrono exemplo chamada ao um backend e depois ter que popular campos na tela
 
 ## next.js 
 na parte de rotas tem toda uma estrutura baseada em conveções para o roteamento, diferentemente do react-router-dom,
